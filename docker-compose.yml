@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+    staging:
+        container_name: notification_service_staging
+        image: registry.digitalocean.com/hoshistech/notification_service_staging:1.0.0
+        build:
+            context: .
+            target: production
+            dockerfile: ./Dockerfile
+        # env_file:
+        #     - ./staging.env
+        command: npm run start:prod
+        ports:
+            - 3000:3000
+        networks:
+            - ibloov-network
+        volumes:
+            - .:/usr/app
+            - /usr/app/node_modules
+        restart: unless-stopped
+    prod:
+        container_name: notification_service_prod
+        image: registry.digitalocean.com/hoshistech/notification_service_prod:1.0.0
+        build:
+            context: .
+            target: production
+            dockerfile: ./Dockerfile
+        # env_file:
+        #     - ./prod.env
+        command: npm run start:prod
+        ports:
+            - 4000:4000
+        networks:
+            - ibloov-network
+        volumes:
+            - .:/usr/app
+            - /usr/app/node_modules
+        restart: unless-stopped
+
+networks:
+    ibloov-network:
