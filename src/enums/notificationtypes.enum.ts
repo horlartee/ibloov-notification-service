@@ -1,0 +1,8 @@
+export enum NoitifcationType {
+  SMS = 'SMS',
+  EMAIL = 'EMAIL',
+  PUSH_NOTIFICATION = 'PUSH_NOTIFICATION',
+  WHATSAPP = 'WHATSAPP',
+  TELEGRAM = 'TELEGRAM',
+  SLACK = 'SLACK',
+}
